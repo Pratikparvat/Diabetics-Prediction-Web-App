@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@1,300&display=swap" rel="stylesheet">
+    <title>Diabetics Prediction</title>
+    <style>
+         body {
+            background-color: black;
+            background-image: url(https://img.freepik.com/premium-photo/magnifying-glass-documents-with-analytics-data-lying-table-digital-virtual-reality-graph_33799-7623.jpg?size=626&ext=jpg&ga=GA1.2.1666676621.1683523971&semt=sph);
+            background-size: cover;
+            background-repeat: no-repeat; 
+            margin: 0px;
+            padding: 0px;
+            
+        }
+
+        input[type=submit] {
+            background-color: #FFA500;
+            border: 2px;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 10px 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+
+        .entry{
+            padding: 4px;
+            margin: 4px;
+            width: 400px;
+        }
+        
+        .heading{
+            background-color: azure;
+        }
+
+        #result{
+            color: #BF0A30;
+        }
+
+        .main{
+            align-self: center;
+            top: 80px;
+            /* left: 110px; */
+            width: 550px;
+            margin-left: 7%;
+            background-color: rgb(255, 255, 255);
+            border-radius: 15px;
+            height: 80vh;
+            align-items: center;
+            padding: 4px;
+            margin: 20px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <center>
+        <div class="main">
+        <header class="heading">
+            <h1>Diabetes Prediction Web App</h1>
+        <h2><u>It's Just a Prediction</u> 🤷‍♂️</h2>
+        
+        </header>
+       
+        <form method='post' action="{% url 'pred' %}">
+            {% csrf_token %}
+            <input class="entry" type="number" name="pregnancy" placeholder="Pregnancy count" required>
+            <br>
+            <input class="entry" type="number" name="glucose" placeholder="Glucose value" required>
+            <br>
+            <input class="entry" type="number" name="bloodPressure" placeholder="BloodPressure(mm Hg)" required>
+            <br>
+            <input class="entry" type="number" name="skinThickness" placeholder="Skin fold thickness (mm)" required>
+            <br>
+            <input class="entry" type="number" name="insulin" placeholder="Insulin Level (mu U/ml)" required>
+            <br>
+            <input class="entry" type="number" name="BMI" placeholder="Enter BMI  (weight in kg/(height in m)^2)" required>
+            <br>
+            <input class="entry" type="number" min="0" 
+            max="1000" step="0.001" name="diabetesPedigreeFunction" placeholder="DiabetesPedigreeFunction" required>
+            <br>
+            <input class="entry" type="number" name="age" placeholder="Age (years)" required>
+            <br>
+            <input type="submit" value="Predict" >
+        </form>
+        
+        {% if result %}
+        <h1 id="result" >{{result}}</h1>
+        {% endif %}
+    </center>
+    
+</div>
+    
+   
+        <center><h4>To visit code file <a href="{% url 'code' %}" target="_blank">Visit here</a>.</h4></center>
+        <center><h4>To visit Dataset <a href="https://www.kaggle.com/datasets/mathchi/diabetes-data-set?search=Diabetes+prediction" target="_blank">Visit here</a>.</h4></center>
+    
+</body>
+</html>
